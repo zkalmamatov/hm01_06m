@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:padding="6dp"
+        android:background="@drawable/rounded">
+
+        <View
+            android:id="@+id/status_indicator"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/circle_indicator"
+            app:layout_constraintEnd_toStartOf="@+id/tv_deadOr"
+            app:layout_constraintStart_toEndOf="@+id/iv_image"
+            app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded"
+            android:clipToOutline="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_margin="6dp"
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="BlUE DIPLOMAT"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/iv_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_deadOr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="ALIVE"
+            android:textColor="@color/white"
+            android:textSize="10dp"
+            app:layout_constraintStart_toEndOf="@+id/iv_image"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+        <TextView
+            android:id="@+id/tv_rase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="170dp"
+            android:text="ALIEN"
+            android:textColor="@color/white"
+            android:textSize="10dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_deadOr"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+        <TextView
+            android:id="@+id/tv_loc1"
+            android:layout_marginTop="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Last known location :"
+            android:textColor="#998787"
+            android:textSize="6dp"
+            app:layout_constraintStart_toEndOf="@+id/iv_image"
+            app:layout_constraintTop_toBottomOf="@+id/tv_deadOr" />
+
+        <TextView
+            android:id="@+id/tv_loc2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Last known location :"
+            android:textColor="#FFFFFF"
+            android:textSize="8dp"
+            app:layout_constraintStart_toEndOf="@+id/iv_image"
+            app:layout_constraintTop_toBottomOf="@+id/tv_loc1" />
+
+        <TextView
+            android:id="@+id/tv_seein1"
+            android:layout_marginTop="6dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="First see in :"
+            android:textColor="#998787"
+            android:textSize="6dp"
+            app:layout_constraintStart_toEndOf="@+id/iv_image"
+            app:layout_constraintTop_toBottomOf="@+id/tv_loc2" />
+
+        <TextView
+            android:id="@+id/tv_seein2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Last known location :"
+            android:textColor="#FFFFFF"
+            android:textSize="8dp"
+            app:layout_constraintStart_toEndOf="@+id/iv_image"
+            app:layout_constraintTop_toBottomOf="@+id/tv_seein1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
