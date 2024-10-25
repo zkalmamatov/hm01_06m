@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.FirstFragment">
 
+    <ProgressBar
+        android:id="@+id/progres_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_marginStart="100dp"
+        android:background="#E6E6E6" />
+
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="32dp"
         android:id="@+id/rv_app"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/character_item"/>
+        tools:listitem="@layout/character_item" />
 
 </FrameLayout>

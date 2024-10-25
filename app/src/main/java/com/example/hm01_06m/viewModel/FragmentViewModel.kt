@@ -7,9 +7,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class FragmentViewModel @Inject constructor (
+class FragmentViewModel @Inject constructor(
     private val reprository: Reprository
 ) : ViewModel() {
 
-    val characters: LiveData<List<Character>> = reprository.fetchCharacters()
+    fun fetchCharacters() = reprository.fetchCharacters()
 }
