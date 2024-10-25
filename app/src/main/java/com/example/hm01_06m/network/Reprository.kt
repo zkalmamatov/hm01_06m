@@ -3,6 +3,7 @@ package com.example.hm01_06m.network
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.hm01_06m.api.ApiService
+import com.example.hm01_06m.models.BaseResponse
 import com.example.hm01_06m.models.Character
 import com.example.hm01_06m.resource.Resource
 import kotlinx.coroutines.CoroutineScope
@@ -16,26 +17,24 @@ import javax.inject.Inject
 
 class Reprository @Inject constructor(
 
-    private val api: ApiService,
-    private val coroutineScope: CoroutineScope
+    private val api: ApiService
 ) {
 
-    fun fetchCharacters(): LiveData<Resource<List<Character>>> {
-        val data = MutableLiveData<Resource<List<Character>>>()
-        data.postValue(Resource.Loading())
-
-        coroutineScope.launch {
-            try {
-                val response = withContext(Dispatchers.IO) {
-                    api.fetchCharacter()
+    fun fetchCharacters(): LiveData<List<Character>> {
+        val data = MutableLiveData<List<Character>>()
+        api.fetchCharacter().enqueue(object : Callback<BaseResponse> {
+            override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
+                if (response.isSuccessful) {
+                    response.body()?.let {
+                        data.postValue(it.characters)
+                    }
                 }
-                if (response.isSuccessful && response.body() != null) {
-                    data.postValue(Resource.Error("Error: ${response.code()}"))
-                }
-            } catch (t: Throwable) {
-                data.postValue(Resource.Error(t.localizedMessage ?: "Unknown Error"))
             }
-        }
+
+            override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
+                data.postValue(emptyList())
+            }
+        })
         return data
     }
 }

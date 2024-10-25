@@ -13,30 +13,24 @@ import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
-class Reprository2 @Inject constructor
-    (
-    private val api: ApiService,
-    private val viewModelScope: CoroutineScope
-) {
+class Reprository2(private val api: ApiService) {
 
-    fun getCharacterById(id: Int): LiveData<Resource<Character?>> {
-        val data = MutableLiveData<Resource<Character?>>()
-        data.postValue(Resource.Loading())
+    fun getCharacterById(id: Int): MutableLiveData<Character?> {
+        val data = MutableLiveData<Character?>()
 
-        viewModelScope.launch {
-            try {
-                val character = withContext(Dispatchers.IO) {
-                    api.fetchCharacterById(id)
-                }
-                if (character != null) {
-
+        api.fetchCharacterById(id).enqueue(object : Callback<Character> {
+            override fun onResponse(call: Call<Character>, response: Response<Character>) {
+                if (response.isSuccessful) {
+                    data.postValue(response.body())
                 } else {
-                    data.postValue(Resource.Error("Charecter not found"))
+                    data.postValue(null)
                 }
-            } catch (t: Throwable) {
-                data.postValue(Resource.Error(t.localizedMessage ?: "Unknown Error"))
             }
-        }
+
+            override fun onFailure(call: Call<Character>, t: Throwable) {
+                data.postValue(null)
+            }
+        })
         return data
     }
 }

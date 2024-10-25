@@ -78,5 +78,6 @@ dependencies {
     implementation ("com.google.android.material:material:1.9.0")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+    implementation("io.insert-koin:koin-android:3.5.0")
 
 }
