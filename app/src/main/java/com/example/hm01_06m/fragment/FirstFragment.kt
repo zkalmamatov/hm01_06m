@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class FirstFragment : Fragment() {
 
-    private val characAdapter by lazy {
+    private val characterAdapter by lazy {
         CharacterListAdapter()
     }
 
@@ -51,7 +51,7 @@ class FirstFragment : Fragment() {
                 }
 
                 is Resource.Success -> {
-                    characAdapter.submitList(res.data)
+                    characterAdapter.submitList(res.data)
                 }
 
                 else -> {}
@@ -60,7 +60,7 @@ class FirstFragment : Fragment() {
     }
 
     private fun setUpRecyclerView() = with(binding.rvApp) {
-        adapter = characAdapter
+        adapter = characterAdapter
         layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
     }
 }
