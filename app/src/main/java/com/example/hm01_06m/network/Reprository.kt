@@ -2,39 +2,13 @@ package com.example.hm01_06m.network
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.hm01_06m.BaseRepository
 import com.example.hm01_06m.api.ApiService
-import com.example.hm01_06m.models.BaseResponse
 import com.example.hm01_06m.models.Character
-import com.example.hm01_06m.resource.Resource
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import javax.inject.Inject
 
-class Reprository @Inject constructor(
+class Reprository(private val api: ApiService) : BaseRepository() {
 
-    private val api: ApiService
-) {
-
-    fun fetchCharacters(): LiveData<List<Character>> {
-        val data = MutableLiveData<List<Character>>()
-        api.fetchCharacter().enqueue(object : Callback<BaseResponse> {
-            override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
-                if (response.isSuccessful) {
-                    response.body()?.let {
-                        data.postValue(it.characters)
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
-                data.postValue(emptyList())
-            }
-        })
-        return data
+    suspend fun fetchCharacters(): LiveData<List<Character>?> = MutableLiveData<List<Character>?>().also {
+        it.postValue(makeApiCall { api.fetchCharacter() }.value?.characters)
     }
 }

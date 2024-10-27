@@ -11,5 +11,5 @@ class FragmentViewModel(
     private val reprository: Reprository
 ) : ViewModel() {
 
-    val characters: LiveData<List<Character>> = reprository.fetchCharacters()
+    val characters: LiveData<List<Character>?> = reprository.fetchCharacters()
 }

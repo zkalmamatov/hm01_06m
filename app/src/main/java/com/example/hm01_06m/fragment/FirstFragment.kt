@@ -24,8 +24,6 @@ class FirstFragment : Fragment() {
         FragmentFirstBinding.inflate(layoutInflater)
     }
 
-    private var characterList: List<Character> = emptyList()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
